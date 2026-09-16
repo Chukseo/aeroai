@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
 
 export async function GET() {
   const apiKey = process.env.OPENAI_API_KEY?.trim();
@@ -12,16 +11,20 @@ export async function GET() {
     });
   }
 
-  try {
-    const client = new OpenAI({ apiKey });
-    
-    // First, verify the key authentication
-    await client.models.list();
+  const baseURL = process.env.OPENAI_BASE_URL?.trim();
+  const providerName = baseURL?.includes("groq.com")
+    ? "Groq"
+    : baseURL?.includes("mistral.ai")
+    ? "Mistral"
+    : "OpenAI";
 
-    // Second, verify credit balance by making a minimal test call
+  try {
+    const { default: OpenAI } = await import("openai");
+    const client = new OpenAI({ apiKey, ...(baseURL ? { baseURL } : {}) });
+
     const model = process.env.OPENAI_MODEL || "gpt-4o";
-    const testCall = await client.chat.completions.create({
-      model: model,
+    await client.chat.completions.create({
+      model,
       messages: [{ role: "user", content: "ping" }],
       max_tokens: 5,
     });
@@ -29,21 +32,20 @@ export async function GET() {
     return NextResponse.json({
       connected: true,
       status: "ready",
-      model: model,
-      message: `Successfully connected to OpenAI API using model: ${model}.`,
+      model,
+      message: `✓ Connected to ${providerName} — model: ${model}`,
     });
   } catch (err: any) {
     const status = err.status || 500;
     const code = err.code || err.error?.code || "unknown";
-    const errorMessage = err.message || "Failed to connect to OpenAI API";
+    const errorMessage = err.message || "Failed to connect";
 
-    if (code === "credit_balance_exhausted" || status === 429) {
+    if (code === "credit_balance_exhausted" || (status === 429 && providerName === "OpenAI")) {
       return NextResponse.json({
         connected: false,
         status: "credit_balance_exhausted",
-        statusCode: 429,
-        message: "Your OpenAI API key is valid, but your OpenAI account has $0 credits remaining. Please add credits at https://platform.openai.com/settings/organization/billing",
-        rawError: errorMessage,
+        message:
+          "Your OpenAI API key is valid but your account has $0 credits. Add credits at: platform.openai.com/settings/organization/billing",
       });
     }
 
@@ -51,17 +53,14 @@ export async function GET() {
       return NextResponse.json({
         connected: false,
         status: "invalid_key",
-        statusCode: 401,
-        message: "Invalid OpenAI API Key provided.",
-        rawError: errorMessage,
+        message: `Invalid API key for ${providerName}.`,
       });
     }
 
     return NextResponse.json({
       connected: false,
       status: "error",
-      statusCode: status,
-      message: errorMessage,
+      message: `${providerName} error: ${errorMessage}`,
     });
   }
 }

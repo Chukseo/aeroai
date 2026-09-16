@@ -5,7 +5,10 @@ import { buildRAGContext } from "./rag-engine";
 export function getOpenAIClient(): OpenAI | null {
   const apiKey = process.env.OPENAI_API_KEY?.trim();
   if (apiKey && apiKey.length > 20) {
-    return new OpenAI({ apiKey });
+    // OPENAI_BASE_URL lets you swap to any OpenAI-compatible provider
+    // e.g. Groq: https://api.groq.com/openai/v1
+    const baseURL = process.env.OPENAI_BASE_URL?.trim() || undefined;
+    return new OpenAI({ apiKey, ...(baseURL ? { baseURL } : {}) });
   }
   return null;
 }
