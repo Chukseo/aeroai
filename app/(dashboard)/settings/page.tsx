@@ -77,10 +77,10 @@ export default function SettingsPage() {
                   onChange={(e) => setModel(e.target.value)}
                   className="w-full rounded-md border border-brand-border bg-brand-surface p-2 text-xs text-brand-text focus:border-brand-amber/40 focus:outline-none"
                 >
-                  <option value="gpt-4o">GPT-4o (Production Compliance)</option>
-                  <option value="gpt-4o-mini">GPT-4o-mini (Fast Triage)</option>
-                  <option value="o1">o1 (Complex Multi-Regulatory Proofs)</option>
-                  <option value="gpt-5">GPT-5 (Next-Gen Reasoning)</option>
+                  <option value="openai/gpt-oss-120b">GPT-OSS 120B (Groq Fast LPU)</option>
+                  <option value="qwen/qwen3.8-27b">Qwen 3.8 27B (Groq Fast)</option>
+                  <option value="gpt-4o">GPT-4o (OpenAI Production)</option>
+                  <option value="gpt-4o-mini">GPT-4o-mini (OpenAI Fast)</option>
                 </select>
               </div>
 
