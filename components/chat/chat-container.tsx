@@ -49,6 +49,7 @@ export function ChatContainer() {
         id: `a-${Date.now()}`, role: "assistant",
         content: data?.answer || "Unable to process the query. Please try again.",
         citations: data?.citations, confidence_score: data?.confidenceScore,
+        engineNotice: data?.engineNotice,
         created_at: new Date().toISOString(),
       }]);
     } catch { setMessages((p) => [...p, { id: `e-${Date.now()}`, role: "assistant", content: "Connection error. Please retry.", created_at: new Date().toISOString() }]); }
@@ -66,6 +67,12 @@ export function ChatContainer() {
             }`}>
               {msg.role === "assistant" && msg.confidence_score && (
                 <div className="mb-2"><ConfidenceBadge score={msg.confidence_score} /></div>
+              )}
+              {msg.role === "assistant" && msg.engineNotice && (
+                <div className="mb-2 flex items-start gap-1.5 rounded bg-yellow-500/10 border border-yellow-500/25 px-2.5 py-1.5 text-[10px] text-yellow-400">
+                  <span className="mt-px shrink-0">⚠</span>
+                  <span>{msg.engineNotice}</span>
+                </div>
               )}
               <div className="whitespace-pre-wrap">{msg.content}</div>
               {msg.role === "assistant" && msg.citations && <CitationPopover citations={msg.citations} />}

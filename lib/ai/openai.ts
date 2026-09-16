@@ -2,10 +2,15 @@ import OpenAI from "openai";
 import { AVIATION_SYSTEM_PROMPTS } from "./prompts";
 import { buildRAGContext } from "./rag-engine";
 
-const apiKey = process.env.OPENAI_API_KEY;
-const isLiveOpenAI = Boolean(apiKey && apiKey.startsWith("sk-") && apiKey.length > 20);
+export function getOpenAIClient(): OpenAI | null {
+  const apiKey = process.env.OPENAI_API_KEY?.trim();
+  if (apiKey && apiKey.length > 20) {
+    return new OpenAI({ apiKey });
+  }
+  return null;
+}
 
-export const openaiClient = isLiveOpenAI ? new OpenAI({ apiKey }) : null;
+export const openaiClient = getOpenAIClient();
 
 export async function generateComplianceAnswer({
   query,
@@ -15,8 +20,10 @@ export async function generateComplianceAnswer({
   conversationHistory?: { role: "user" | "assistant"; content: string }[];
 }) {
   const ragContext = await buildRAGContext(query);
+  const client = getOpenAIClient();
+  let openAiError: string | null = null;
 
-  if (openaiClient) {
+  if (client) {
     try {
       const messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[] = [
         {
@@ -33,8 +40,9 @@ export async function generateComplianceAnswer({
         },
       ];
 
-      const completion = await openaiClient.chat.completions.create({
-        model: process.env.OPENAI_MODEL || "gpt-4o",
+      const model = process.env.OPENAI_MODEL || "gpt-4o";
+      const completion = await client.chat.completions.create({
+        model,
         messages,
         temperature: 0.1,
       });
@@ -45,9 +53,15 @@ export async function generateComplianceAnswer({
         answer: responseText,
         citations: ragContext.citations,
         confidenceScore: ragContext.highestScore,
+        engine: "openai" as const,
+        model,
       };
-    } catch (err) {
-      console.warn("OpenAI API call failed, using deterministic aviation engine:", err);
+    } catch (err: any) {
+      const isQuota = err?.code === "credit_balance_exhausted" || err?.status === 429;
+      openAiError = isQuota
+        ? "OpenAI credit balance is exhausted ($0 remaining). Switched to deterministic aviation compliance engine."
+        : `OpenAI error (${err?.status || 500}): ${err?.message || "Unknown error"}`;
+      console.warn("OpenAI API call failed, falling back to deterministic engine:", openAiError);
     }
   }
 
@@ -278,5 +292,8 @@ Internal operational procedures and employee policies were correlated against au
     answer: generatedAnswer,
     citations: ragContext.citations,
     confidenceScore: ragContext.highestScore,
+    engine: "deterministic" as const,
+    model: "aeroAI-Local-Compliance-Engine",
+    engineNotice: openAiError || undefined,
   };
 }

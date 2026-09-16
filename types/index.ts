@@ -193,6 +193,9 @@ export interface ChatMessage {
   content: string;
   citations?: Citation[];
   confidence_score?: number;
+  engine?: 'openai' | 'deterministic';
+  model?: string;
+  engineNotice?: string;
   created_at: string;
 }
 
