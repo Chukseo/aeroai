@@ -3,59 +3,54 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Search, Bell, Zap, ChevronRight } from "lucide-react";
+import { Bell, ChevronRight, Search, Zap } from "lucide-react";
 
 export function Topbar() {
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-stone-200 bg-white/90 backdrop-blur-md px-6 gap-4 shadow-sm">
-      {/* Search */}
-      <div className="relative w-64 lg:w-80 shrink-0">
-        <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-stone-400 pointer-events-none" />
+    <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b border-white/10 bg-black/72 px-6 shadow-[0_16px_60px_rgba(0,0,0,0.28)] backdrop-blur-xl">
+      <div className="relative w-64 shrink-0 lg:w-80">
+        <Search className="pointer-events-none absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-white/35" />
         <input
           type="text"
-          placeholder="Search manuals, regulations, policies…"
-          className="h-8 w-full rounded-lg border border-stone-200 bg-stone-50 pl-8 pr-3 text-xs text-stone-700 placeholder:text-stone-400 focus:border-amber-400 focus:bg-white focus:outline-none transition-colors shadow-sm"
+          placeholder="Search manuals, regulations, policies..."
+          className="h-8 w-full rounded-lg border border-white/10 bg-white/[0.045] pl-8 pr-3 text-xs text-white placeholder:text-white/32 shadow-sm transition-colors focus:border-lime-300/60 focus:bg-white/[0.07] focus:outline-none"
         />
-        <kbd className="absolute right-2.5 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-0.5 rounded border border-stone-200 bg-white px-1.5 py-0.5 text-[10px] text-stone-400 font-mono shadow-sm">
-          ⌘K
+        <kbd className="absolute right-2.5 top-1/2 hidden -translate-y-1/2 items-center gap-0.5 rounded border border-white/10 bg-black px-1.5 py-0.5 font-mono text-[10px] text-white/35 shadow-sm sm:flex">
+          Ctrl K
         </kbd>
       </div>
 
-      <div className="flex items-center gap-3 ml-auto">
-        {/* Audit Readiness */}
-        <div className="hidden lg:flex items-center gap-2 rounded-lg border border-stone-200 bg-stone-50 px-3 py-1.5 shadow-sm">
+      <div className="ml-auto flex items-center gap-3">
+        <div className="hidden items-center gap-2 rounded-lg border border-white/10 bg-white/[0.045] px-3 py-1.5 shadow-sm lg:flex">
           <div className="flex items-center gap-1.5">
-            <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            <span className="text-[11px] text-stone-500 font-medium">Audit Readiness</span>
+            <div className="h-1.5 w-1.5 rounded-full bg-lime-300" />
+            <span className="text-[11px] font-medium text-white/50">Audit Readiness</span>
           </div>
-          <div className="h-3 w-px bg-stone-200" />
-          <span className="text-[11px] font-bold text-emerald-600 tabular-nums">91%</span>
+          <div className="h-3 w-px bg-white/10" />
+          <span className="tabular-nums text-[11px] font-bold text-lime-200">91%</span>
         </div>
 
-        {/* Alert Pill */}
         <Link
           href="/intelligence"
-          className="group flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3 py-1.5 text-[11px] font-semibold text-red-600 hover:border-red-300 hover:bg-red-100 transition-all shadow-sm"
+          className="group flex items-center gap-1.5 rounded-lg border border-rose-300/20 bg-rose-400/10 px-3 py-1.5 text-[11px] font-semibold text-rose-200 shadow-sm transition-all hover:border-rose-300/35 hover:bg-rose-400/15"
         >
           <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-300 opacity-75" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-rose-300" />
           </span>
           <span>3 Regulatory Alerts</span>
-          <ChevronRight className="h-3 w-3 opacity-60 group-hover:translate-x-0.5 transition-transform" />
+          <ChevronRight className="h-3 w-3 opacity-60 transition-transform group-hover:translate-x-0.5" />
         </Link>
 
-        {/* Bell */}
-        <button className="relative flex h-8 w-8 items-center justify-center rounded-lg border border-stone-200 bg-white text-stone-500 hover:bg-stone-50 hover:text-stone-800 transition-colors shadow-sm">
+        <button className="relative flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.045] text-white/55 shadow-sm transition-colors hover:bg-white/10 hover:text-white">
           <Bell className="h-3.5 w-3.5" />
-          <span className="absolute top-1.5 right-1.5 h-1.5 w-1.5 rounded-full bg-amber-500" />
+          <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-lime-300" />
         </button>
 
-        {/* Ask aeroAI */}
         <Link href="/chat">
           <Button
             size="sm"
-            className="gap-1.5 bg-amber-600 text-white font-semibold hover:bg-amber-700 shadow-sm border-0 px-4"
+            className="gap-1.5 border-0 bg-white px-4 font-semibold text-black shadow-sm hover:bg-lime-200"
           >
             <Zap className="h-3 w-3" />
             Ask aeroAI

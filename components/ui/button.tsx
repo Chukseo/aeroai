@@ -7,13 +7,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-brand-amber text-white hover:bg-brand-gold active:bg-brand-amber/90",
+        default: "bg-white text-black hover:bg-brand-amber active:bg-white/90",
         destructive: "bg-brand-coral/15 text-brand-coral border border-brand-coral/20 hover:bg-brand-coral/25",
-        outline: "border border-brand-border bg-brand-surface text-brand-text hover:bg-brand-hover",
+        outline: "border border-white/10 bg-white/[0.035] text-brand-text hover:border-white/20 hover:bg-white/[0.08]",
         secondary: "bg-brand-card text-brand-text hover:bg-brand-hover",
-        ghost: "text-brand-muted hover:bg-brand-card hover:text-brand-text",
+        ghost: "text-brand-muted hover:bg-white/[0.06] hover:text-brand-text",
         link: "text-brand-amber underline-offset-4 hover:underline",
-        aviation: "bg-brand-amber text-white hover:bg-brand-gold active:bg-brand-amber/90",
+        aviation: "bg-brand-amber text-black hover:bg-white active:bg-brand-amber/90",
       },
       size: {
         default: "h-9 px-4 py-2",
