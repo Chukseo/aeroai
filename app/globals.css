@@ -4,81 +4,76 @@
 
 @layer base {
   :root {
-    --background: 225 15% 5%;
-    --foreground: 36 8% 94%;
-    --card: 225 12% 8%;
-    --card-foreground: 36 8% 94%;
-    --popover: 225 12% 8%;
-    --popover-foreground: 36 8% 94%;
-    --primary: 38 86% 50%;
+    --background: 40 20% 97%;
+    --foreground: 20 10% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 10% 10%;
+    --primary: 38 92% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 225 10% 12%;
-    --secondary-foreground: 36 8% 85%;
-    --muted: 225 8% 12%;
-    --muted-foreground: 225 8% 55%;
-    --accent: 225 10% 14%;
-    --accent-foreground: 36 8% 94%;
-    --destructive: 0 72% 51%;
+    --secondary: 40 10% 94%;
+    --secondary-foreground: 20 10% 20%;
+    --muted: 40 10% 94%;
+    --muted-foreground: 20 8% 55%;
+    --accent: 40 10% 94%;
+    --accent-foreground: 20 10% 10%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 225 10% 14%;
-    --input: 225 10% 14%;
-    --ring: 38 86% 50%;
+    --border: 35 15% 88%;
+    --input: 35 15% 88%;
+    --ring: 38 92% 50%;
     --radius: 0.75rem;
   }
 }
 
 body {
-  background-color: #0b0d13;
-  color: #e2ded8;
+  background-color: #f9f8f6;
+  color: #1c1917;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
 }
 
-/* Framer-style background ambient glow */
+/* Framer light ambient background */
 .framer-ambient-glow {
-  background-image: 
-    radial-gradient(ellipse 90% 50% at 50% -10%, rgba(224, 159, 62, 0.08), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(58, 143, 133, 0.05), transparent 60%),
-    radial-gradient(ellipse 50% 30% at 10% 80%, rgba(199, 92, 92, 0.04), transparent 60%);
+  background-image:
+    radial-gradient(ellipse 80% 40% at 50% -5%, rgba(217, 119, 6, 0.06), transparent 70%),
+    radial-gradient(ellipse 50% 30% at 90% 5%, rgba(13, 148, 136, 0.04), transparent 60%);
 }
 
-/* Framer-style fine grid background pattern */
+/* Fine grid pattern for light theme */
 .framer-grid-bg {
   background-size: 28px 28px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
 }
 
-/* Glassmorphic card styling */
+/* Light glassmorphic card */
 .framer-card {
-  background: linear-gradient(180deg, rgba(25, 28, 36, 0.75) 0%, rgba(16, 18, 24, 0.85) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .framer-card:hover {
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
 }
 
-/* Subtle glow badges */
+/* Light badge accents */
 .framer-pill-gold {
-  background: rgba(224, 159, 62, 0.1);
-  border: 1px solid rgba(224, 159, 62, 0.25);
-  box-shadow: 0 0 12px -2px rgba(224, 159, 62, 0.2);
+  background: rgba(217, 119, 6, 0.08);
+  border: 1px solid rgba(217, 119, 6, 0.2);
 }
 
 .framer-pill-green {
-  background: rgba(90, 154, 110, 0.1);
-  border: 1px solid rgba(90, 154, 110, 0.25);
-  box-shadow: 0 0 12px -2px rgba(90, 154, 110, 0.2);
+  background: rgba(22, 163, 74, 0.08);
+  border: 1px solid rgba(22, 163, 74, 0.2);
 }
 
-/* Markdown tables in chat responses */
+/* Markdown table styling (light) */
 .markdown-body table {
   width: 100%;
   border-collapse: separate;
@@ -87,35 +82,29 @@ body {
   font-size: 0.75rem;
   border-radius: 0.5rem;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .markdown-body th {
-  background: rgba(255, 255, 255, 0.04);
-  color: #f5f2ed;
+  background: rgba(0, 0, 0, 0.03);
+  color: #1c1917;
   font-weight: 600;
   padding: 0.6rem 0.75rem;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .markdown-body td {
   padding: 0.6rem 0.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  color: #d1ccc4;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  color: #44403c;
 }
 
-.markdown-body tr:last-child td {
-  border-bottom: none;
-}
-
-.markdown-body tr:nth-child(even) td {
-  background: rgba(255, 255, 255, 0.015);
-}
+.markdown-body tr:last-child td { border-bottom: none; }
+.markdown-body tr:nth-child(even) td { background: rgba(0, 0, 0, 0.015); }
 
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #262933; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #383c4a; }
-::selection { background-color: rgba(224, 159, 62, 0.35); color: #ffffff; }
-
+::-webkit-scrollbar-thumb { background: #d6d3cd; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #b8b4ac; }
+::selection { background-color: rgba(217, 119, 6, 0.2); color: #1c1917; }

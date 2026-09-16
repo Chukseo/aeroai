@@ -4,7 +4,7 @@ import { Topbar } from "@/components/layout/topbar";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#090b10] text-[#e2ded8] flex framer-ambient-glow framer-grid-bg selection:bg-amber-500/30">
+    <div className="min-h-screen bg-[#f9f8f6] text-[#1c1917] flex framer-ambient-glow framer-grid-bg">
       <Sidebar />
       <div className="flex-1 flex flex-col pl-60 min-h-screen">
         <Topbar />
