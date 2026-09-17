@@ -251,7 +251,7 @@ export default function HomePage() {
               <h2 className="mt-4 text-4xl font-black leading-tight text-white sm:text-5xl">One operating layer for every compliance signal.</h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-white/56 lg:ml-auto">
-              Inspired by Grainz&apos;s serious black-and-white SaaS rhythm, this interface keeps the story buyer-focused: expose risk, prove the system, then make the next action obvious.
+              Built for aviation leaders who cannot afford blind spots: expose operational risk, trace every finding to its source, and move from regulatory change to an owned corrective action.
             </p>
           </div>
 
