@@ -61,26 +61,26 @@ export function ComplianceScoreCard({
   ];
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-2.5 sm:gap-4 lg:grid-cols-4">
       {items.map((item) => (
         <div
           key={item.label}
-          className={`${item.bg} border ${item.border} rounded-xl p-5 shadow-sm transition-all hover:shadow-md`}
+          className={`${item.bg} border ${item.border} rounded-xl p-3.5 sm:p-5 shadow-sm transition-all hover:shadow-md`}
         >
-          <div className="flex items-center justify-between mb-3">
-            <p className="text-[11px] font-bold uppercase tracking-widest text-stone-500">
+          <div className="flex items-center justify-between mb-2 sm:mb-3">
+            <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider sm:tracking-widest text-stone-500 truncate">
               {item.label}
             </p>
-            <span className="text-base">{item.icon}</span>
+            <span className="text-sm sm:text-base shrink-0">{item.icon}</span>
           </div>
 
-          <p className={`text-3xl font-bold tracking-tight ${item.valueColor} tabular-nums`}>
+          <p className={`text-2xl sm:text-3xl font-bold tracking-tight ${item.valueColor} tabular-nums`}>
             {item.value}
           </p>
 
-          <div className="mt-3 flex items-center gap-1.5">
-            <span className={`h-1.5 w-1.5 rounded-full ${item.dot}`} />
-            <p className={`text-[11px] ${item.subColor}`}>{item.sub}</p>
+          <div className="mt-2 sm:mt-3 flex items-center gap-1.5 min-w-0">
+            <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${item.dot}`} />
+            <p className={`text-[10px] sm:text-[11px] ${item.subColor} truncate`}>{item.sub}</p>
           </div>
         </div>
       ))}

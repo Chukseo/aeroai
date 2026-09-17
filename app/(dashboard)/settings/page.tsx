@@ -69,7 +69,7 @@ export default function SettingsPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-brand-muted mb-1 font-medium">Reasoning Model</label>
                 <select
@@ -101,7 +101,7 @@ export default function SettingsPage() {
                 size="sm"
                 onClick={testConnection}
                 disabled={testing}
-                className="text-xs"
+                className="text-xs w-full sm:w-auto"
               >
                 {testing ? "Testing…" : "Test OpenAI Connection"}
               </Button>
@@ -139,11 +139,11 @@ export default function SettingsPage() {
           </CardContent>
         </Card>
 
-        <div className="flex items-center justify-end gap-3 pt-2">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-3 pt-2">
           {saved && (
-            <span className="text-xs text-brand-green font-medium">Configuration saved</span>
+            <span className="text-xs text-brand-green font-medium text-center sm:text-right">Configuration saved</span>
           )}
-          <Button type="submit" size="sm">Save Changes</Button>
+          <Button type="submit" size="sm" className="w-full sm:w-auto">Save Changes</Button>
         </div>
       </form>
     </div>

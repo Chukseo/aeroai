@@ -22,15 +22,15 @@ export function AuditReadinessGauge({
 
         <Progress value={readinessScore} indicatorClassName="bg-brand-green" />
 
-        <div className="grid grid-cols-3 gap-3 pt-1">
+        <div className="grid grid-cols-3 gap-1.5 sm:gap-3 pt-1">
           {[
             { label: "Verified", value: "32 / 36" },
             { label: "Under Review", value: "3" },
             { label: "Days to Audit", value: "18" },
           ].map((m) => (
-            <div key={m.label} className="text-center rounded-md bg-brand-surface p-2">
-              <p className="text-xs font-semibold text-brand-heading">{m.value}</p>
-              <p className="text-[10px] text-brand-muted mt-0.5">{m.label}</p>
+            <div key={m.label} className="text-center rounded-md bg-brand-surface p-1.5 sm:p-2 min-w-0">
+              <p className="text-xs font-semibold text-brand-heading truncate">{m.value}</p>
+              <p className="text-[9px] sm:text-[10px] text-brand-muted mt-0.5 truncate">{m.label}</p>
             </div>
           ))}
         </div>

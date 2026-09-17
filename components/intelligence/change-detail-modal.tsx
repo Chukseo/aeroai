@@ -81,20 +81,20 @@ export function ChangeDetailModal({
         </div>
 
         {/* Tab switcher: Cross-Mapped Company Procedures vs Statutory Diff */}
-        <div className="flex items-center border-b border-brand-border gap-2">
+        <div className="flex items-center border-b border-brand-border gap-2 overflow-x-auto pb-1">
           <button
             onClick={() => setActiveTab("cross_mapping")}
-            className={`pb-2 px-3 text-xs font-semibold transition-colors border-b-2 ${
+            className={`pb-2 px-3 text-xs font-semibold transition-colors border-b-2 whitespace-nowrap shrink-0 ${
               activeTab === "cross_mapping"
                 ? "border-brand-amber text-brand-gold"
                 : "border-transparent text-brand-muted hover:text-brand-text"
             }`}
           >
-            Affected Company Procedures & Draft Fixes ({assessment.affected_procedures.length})
+            Affected Procedures & Fixes ({assessment.affected_procedures.length})
           </button>
           <button
             onClick={() => setActiveTab("statutory_diff")}
-            className={`pb-2 px-3 text-xs font-semibold transition-colors border-b-2 ${
+            className={`pb-2 px-3 text-xs font-semibold transition-colors border-b-2 whitespace-nowrap shrink-0 ${
               activeTab === "statutory_diff"
                 ? "border-brand-amber text-brand-gold"
                 : "border-transparent text-brand-muted hover:text-brand-text"

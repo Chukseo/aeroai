@@ -40,7 +40,7 @@ export function DocumentTable({
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value)}
-          className="h-8 rounded-md border border-brand-border bg-brand-surface px-3 text-xs text-brand-muted focus:border-brand-amber/40 focus:outline-none"
+          className="h-8 w-full sm:w-auto rounded-md border border-brand-border bg-brand-surface px-3 text-xs text-brand-muted focus:border-brand-amber/40 focus:outline-none"
         >
           <option value="ALL">All Categories</option>
           <option value="EMPLOYMENT_CONTRACT">Employee Contracts</option>
@@ -54,7 +54,8 @@ export function DocumentTable({
       </div>
 
       <div className="rounded-lg border border-brand-border bg-brand-card overflow-hidden">
-        <table className="w-full text-left text-xs">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs min-w-[640px]">
           <thead className="bg-brand-surface text-[11px] text-brand-muted border-b border-brand-border">
             <tr>
               <th className="py-3 px-4 font-medium">Document / Contract</th>
@@ -114,6 +115,7 @@ export function DocumentTable({
           </tbody>
         </table>
       </div>
+    </div>
 
       <ChunkViewerModal
         document={selectedDocForChunks}

@@ -180,7 +180,7 @@ export function DocumentGeneratorView() {
                     onClick={() => {
                       setPromptInput(ex);
                     }}
-                    className="truncate max-w-xl rounded bg-brand-card border border-brand-border px-2.5 py-1 text-[11px] text-brand-muted hover:text-brand-gold hover:border-brand-amber/40 transition-colors text-left"
+                    className="truncate max-w-full rounded bg-brand-card border border-brand-border px-2.5 py-1 text-[11px] text-brand-muted hover:text-brand-gold hover:border-brand-amber/40 transition-colors text-left"
                   >
                     {ex}
                   </button>
@@ -274,11 +274,11 @@ export function DocumentGeneratorView() {
       {/* Generated Document Workspace */}
       <div className="space-y-4">
         {/* Workspace Toolbar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-brand-border pb-3">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-brand-border pb-3">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1.5 md:pb-0 w-full md:w-auto">
             <button
               onClick={() => setActiveTab("preview")}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
+              className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors shrink-0 ${
                 activeTab === "preview"
                   ? "bg-brand-amber/15 text-brand-gold border border-brand-amber/30"
                   : "text-brand-muted hover:text-brand-text"
@@ -288,7 +288,7 @@ export function DocumentGeneratorView() {
             </button>
             <button
               onClick={() => setActiveTab("clauses")}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
+              className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors shrink-0 ${
                 activeTab === "clauses"
                   ? "bg-brand-amber/15 text-brand-gold border border-brand-amber/30"
                   : "text-brand-muted hover:text-brand-text"
@@ -298,22 +298,22 @@ export function DocumentGeneratorView() {
             </button>
             <button
               onClick={() => setActiveTab("compliance")}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
+              className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors shrink-0 ${
                 activeTab === "compliance"
                   ? "bg-brand-amber/15 text-brand-gold border border-brand-amber/30"
                   : "text-brand-muted hover:text-brand-text"
               }`}
             >
-              FAA / DOT Regulatory Verification
+              Regulatory Verification
             </button>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
             <Button
               onClick={handleCopyText}
               variant="outline"
               size="sm"
-              className="gap-1.5 text-xs h-8"
+              className="flex-1 sm:flex-initial gap-1.5 text-xs h-8"
             >
               {copied ? (
                 <>
@@ -323,7 +323,7 @@ export function DocumentGeneratorView() {
               ) : (
                 <>
                   <Copy className="h-3.5 w-3.5" />
-                  <span>Copy Text</span>
+                  <span>Copy</span>
                 </>
               )}
             </Button>
@@ -332,7 +332,7 @@ export function DocumentGeneratorView() {
               onClick={handleDownloadDOCX}
               variant="outline"
               size="sm"
-              className="gap-1.5 text-xs h-8 text-brand-gold border-brand-amber/30 hover:bg-brand-amber/10"
+              className="flex-1 sm:flex-initial gap-1.5 text-xs h-8 text-brand-gold border-brand-amber/30 hover:bg-brand-amber/10"
             >
               <Download className="h-3.5 w-3.5" />
               <span>Word (.docx)</span>
@@ -341,17 +341,17 @@ export function DocumentGeneratorView() {
             <Button
               onClick={handleDownloadPDF}
               size="sm"
-              className="gap-1.5 text-xs h-8"
+              className="flex-1 sm:flex-initial gap-1.5 text-xs h-8"
             >
               <Download className="h-3.5 w-3.5" />
-              <span>PDF Document</span>
+              <span>PDF</span>
             </Button>
           </div>
         </div>
 
         {/* TAB 1: Complete Formatted Document Preview */}
         {activeTab === "preview" && (
-          <div className="rounded-lg border border-brand-border bg-brand-surface p-6 sm:p-8 space-y-6 text-xs text-brand-text shadow-xl max-w-4xl mx-auto">
+          <div className="rounded-lg border border-brand-border bg-brand-surface p-4 sm:p-6 md:p-8 space-y-6 text-xs text-brand-text shadow-xl max-w-4xl mx-auto">
             {/* Document Header */}
             <div className="text-center space-y-2 border-b border-brand-border pb-6">
               <h1 className="text-lg sm:text-xl font-bold text-brand-heading tracking-wide">

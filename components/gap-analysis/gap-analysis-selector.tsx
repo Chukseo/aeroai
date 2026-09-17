@@ -70,11 +70,11 @@ export function GapAnalysisSelector({
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-2 border-t border-brand-border">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-brand-border">
             <p className="text-xs text-brand-muted">
               Identifies policy conflicts, missing mandatory controls, and weak phrasing.
             </p>
-            <Button type="submit" disabled={isAnalyzing} size="sm">
+            <Button type="submit" disabled={isAnalyzing} size="sm" className="w-full sm:w-auto">
               {isAnalyzing ? "Comparing Sources..." : "Run Gap Analysis"}
             </Button>
           </div>

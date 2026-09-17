@@ -95,48 +95,48 @@ export function RegulatoryIntelligenceFeed({
   return (
     <div className="space-y-6">
       {/* Top Banner Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
         <Card className="border-brand-border bg-brand-card">
-          <CardContent className="p-4">
-            <p className="text-[11px] text-brand-muted">Active Regulatory Updates</p>
-            <p className="text-2xl font-bold text-brand-heading">{assessments.length}</p>
-            <p className="text-[10px] text-brand-muted mt-0.5">FAA, EASA, DOT, ICAO</p>
+          <CardContent className="p-3 sm:p-4">
+            <p className="text-[10px] sm:text-[11px] text-brand-muted truncate">Active Updates</p>
+            <p className="text-xl sm:text-2xl font-bold text-brand-heading">{assessments.length}</p>
+            <p className="text-[9px] sm:text-[10px] text-brand-muted mt-0.5 truncate">FAA, EASA, DOT, ICAO</p>
           </CardContent>
         </Card>
 
         <Card className="border-brand-coral/30 bg-brand-card">
-          <CardContent className="p-4">
-            <p className="text-[11px] text-brand-muted">Critical Action Items</p>
-            <p className="text-2xl font-bold text-brand-coral">{criticalCount}</p>
-            <p className="text-[10px] text-brand-coral/80 mt-0.5">FAR Part 117 Crew Rest</p>
+          <CardContent className="p-3 sm:p-4">
+            <p className="text-[10px] sm:text-[11px] text-brand-muted truncate">Critical Items</p>
+            <p className="text-xl sm:text-2xl font-bold text-brand-coral">{criticalCount}</p>
+            <p className="text-[9px] sm:text-[10px] text-brand-coral/80 mt-0.5 truncate">FAR Part 117 Rest</p>
           </CardContent>
         </Card>
 
         <Card className="border-yellow-500/30 bg-brand-card">
-          <CardContent className="p-4">
-            <p className="text-[11px] text-brand-muted">High Risk Updates</p>
-            <p className="text-2xl font-bold text-yellow-500">{highCount}</p>
-            <p className="text-[10px] text-yellow-500/80 mt-0.5">Part 145 Training Retention</p>
+          <CardContent className="p-3 sm:p-4">
+            <p className="text-[10px] sm:text-[11px] text-brand-muted truncate">High Risk</p>
+            <p className="text-xl sm:text-2xl font-bold text-yellow-500">{highCount}</p>
+            <p className="text-[9px] sm:text-[10px] text-yellow-500/80 mt-0.5 truncate">Part 145 Retention</p>
           </CardContent>
         </Card>
 
         <Card className="border-brand-amber/30 bg-brand-card">
-          <CardContent className="p-4">
-            <p className="text-[11px] text-brand-muted">Internal Gaps Detected</p>
-            <p className="text-2xl font-bold text-brand-gold">{totalGaps}</p>
-            <p className="text-[10px] text-brand-muted mt-0.5">Draft fixes ready to apply</p>
+          <CardContent className="p-3 sm:p-4">
+            <p className="text-[10px] sm:text-[11px] text-brand-muted truncate">Internal Gaps</p>
+            <p className="text-xl sm:text-2xl font-bold text-brand-gold">{totalGaps}</p>
+            <p className="text-[9px] sm:text-[10px] text-brand-muted mt-0.5 truncate">Draft fixes ready</p>
           </CardContent>
         </Card>
       </div>
 
       {/* Simulator Trigger & Live Feed Filter */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
-        <div className="flex items-center rounded-md border border-brand-border bg-brand-surface p-1 text-xs">
+        <div className="flex flex-wrap items-center rounded-md border border-brand-border bg-brand-surface p-1 text-xs w-full sm:w-auto">
           {["ALL", "FAA", "EASA", "DOT"].map((auth) => (
             <button
               key={auth}
               onClick={() => setAuthorityFilter(auth)}
-              className={`rounded px-3 py-1 font-medium transition-colors ${
+              className={`flex-1 sm:flex-initial rounded px-3 py-1 font-medium transition-colors ${
                 authorityFilter === auth
                   ? "bg-brand-card text-brand-gold font-semibold"
                   : "text-brand-muted hover:text-brand-text"
@@ -152,7 +152,7 @@ export function RegulatoryIntelligenceFeed({
           disabled={isSimulating}
           variant="outline"
           size="sm"
-          className="gap-1.5 text-xs text-brand-gold hover:text-white border-brand-amber/30 hover:bg-brand-amber/10"
+          className="w-full sm:w-auto gap-1.5 text-xs text-brand-gold hover:text-white border-brand-amber/30 hover:bg-brand-amber/10"
         >
           {isSimulating ? (
             <>
@@ -231,7 +231,7 @@ export function RegulatoryIntelligenceFeed({
                 <Button
                   onClick={() => setSelectedAssessment(item)}
                   size="sm"
-                  className="gap-1.5 shrink-0"
+                  className="gap-1.5 shrink-0 w-full sm:w-auto"
                 >
                   <span>Review Impact & Draft Fix</span>
                   <ArrowRight className="h-3 w-3" />

@@ -95,34 +95,34 @@ export function ChatContainer() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-9rem)] rounded-2xl border border-stone-200 bg-white overflow-hidden shadow-sm">
+    <div className="flex flex-col h-[calc(100dvh-7.5rem)] lg:h-[calc(100vh-9rem)] rounded-2xl border border-stone-200 bg-white overflow-hidden shadow-sm">
 
       {/* Chat header */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-stone-100 bg-stone-50/80">
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 shadow-sm">
+      <div className="flex items-center justify-between px-3.5 sm:px-5 py-2.5 sm:py-3 border-b border-stone-100 bg-stone-50/80">
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 shadow-sm shrink-0">
             <Sparkles className="h-3.5 w-3.5 text-white" />
           </div>
           <div>
             <span className="text-xs font-bold text-stone-800 tracking-tight">aeroAI</span>
-            <span className="ml-2 text-[10px] text-stone-400">FAA Compliance Engine</span>
+            <span className="ml-1.5 sm:ml-2 text-[10px] text-stone-400">FAA Compliance</span>
           </div>
         </div>
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 shrink-0">
           <span className="relative flex h-1.5 w-1.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
           </span>
-          <span className="text-[10px] font-medium text-stone-400">Groq LPU Online</span>
+          <span className="text-[10px] font-medium text-stone-400">Groq Online</span>
         </div>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-5 space-y-5 bg-stone-50/30">
+      <div className="flex-1 overflow-y-auto p-3 sm:p-5 space-y-4 sm:space-y-5 bg-stone-50/30">
         {messages.map((msg) => (
           <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
             <div
-              className={`max-w-[82%] rounded-2xl p-4 text-[13px] leading-relaxed ${
+              className={`max-w-[90%] sm:max-w-[82%] rounded-2xl p-3.5 sm:p-4 text-xs sm:text-[13px] leading-relaxed ${
                 msg.role === "user"
                   ? "bg-amber-600 text-white font-medium shadow-sm rounded-br-sm"
                   : "bg-white border border-stone-200 text-stone-800 shadow-sm rounded-bl-sm"
@@ -174,12 +174,12 @@ export function ChatContainer() {
       </div>
 
       {/* Quick prompts */}
-      <div className="px-4 py-2 border-t border-stone-100 bg-white flex gap-2 overflow-x-auto">
+      <div className="px-3 sm:px-4 py-2 border-t border-stone-100 bg-white flex gap-1.5 sm:gap-2 overflow-x-auto">
         {PROMPTS.map((p, i) => (
           <button
             key={i}
             onClick={() => send(p)}
-            className="shrink-0 rounded-lg border border-stone-200 bg-stone-50 px-3 py-1.5 text-[11px] text-stone-500 hover:border-amber-300 hover:text-amber-700 hover:bg-amber-50 transition-all whitespace-nowrap"
+            className="shrink-0 rounded-lg border border-stone-200 bg-stone-50 px-2.5 sm:px-3 py-1.5 text-[10px] sm:text-[11px] text-stone-500 hover:border-amber-300 hover:text-amber-700 hover:bg-amber-50 transition-all whitespace-nowrap"
           >
             {p}
           </button>
@@ -189,22 +189,22 @@ export function ChatContainer() {
       {/* Input */}
       <form
         onSubmit={(e) => { e.preventDefault(); send(input); }}
-        className="p-4 border-t border-stone-200 bg-white flex gap-2"
+        className="p-2.5 sm:p-4 border-t border-stone-200 bg-white flex gap-2"
       >
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           disabled={loading}
-          placeholder="Ask aeroAI about contracts, HR policies, rest limits, or regulations…"
-          className="flex-1 rounded-xl border border-stone-200 bg-stone-50 px-4 py-2.5 text-xs text-stone-700 placeholder:text-stone-400 focus:border-amber-400 focus:bg-white focus:outline-none transition-all shadow-sm"
+          placeholder="Ask aeroAI about contracts, rest limits..."
+          className="flex-1 rounded-xl border border-stone-200 bg-stone-50 px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-xs text-stone-700 placeholder:text-stone-400 focus:border-amber-400 focus:bg-white focus:outline-none transition-all shadow-sm"
         />
         <button
           type="submit"
           disabled={!input.trim() || loading}
-          className="flex items-center gap-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+          className="flex items-center gap-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 px-3 sm:px-4 py-2 sm:py-2.5 text-xs font-bold text-white shadow-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
         >
           <Send className="h-3.5 w-3.5" />
-          Send
+          <span className="hidden xs:inline">Send</span>
         </button>
       </form>
     </div>

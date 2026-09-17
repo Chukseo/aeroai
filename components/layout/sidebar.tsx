@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useSidebar } from "./sidebar-context";
 import {
   BarChart3,
   BookOpenCheck,
@@ -16,6 +17,7 @@ import {
   Scale,
   SlidersHorizontal,
   Sparkles,
+  X,
 } from "lucide-react";
 
 interface NavGroup {
@@ -56,46 +58,73 @@ const navGroups: NavGroup[] = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const { isOpen, close } = useSidebar();
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 flex w-60 flex-col border-r border-white/10 bg-black/82 shadow-[20px_0_80px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-      <div className="flex h-16 items-center border-b border-white/10 px-5">
-        <Link href="/dashboard" className="group flex items-center gap-3">
-          <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-white text-black shadow-[0_0_28px_rgba(255,255,255,0.15)] transition-transform group-hover:scale-105">
-            <Plane className="h-4 w-4 -rotate-45" />
-          </div>
-          <div>
-            <div className="flex items-center gap-1.5">
-              <span className="text-sm font-bold tracking-[0.14em] text-white">
-                aero<span className="text-lime-200">AI</span>
-              </span>
-              <span className="rounded-full bg-lime-300 px-1.5 py-0.5 text-[9px] font-bold text-black">
-                PRO
-              </span>
+    <>
+      {/* Mobile backdrop overlay */}
+      {isOpen && (
+        <div
+          onClick={close}
+          className="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm transition-opacity duration-300 lg:hidden"
+          aria-hidden="true"
+        />
+      )}
+
+      <aside
+        className={cn(
+          "fixed inset-y-0 left-0 z-50 flex w-72 max-w-[85vw] flex-col border-r border-white/10 bg-[#080808]/95 shadow-[20px_0_80px_rgba(0,0,0,0.6)] backdrop-blur-2xl transition-transform duration-300 ease-in-out",
+          "lg:w-60 lg:z-40 lg:bg-black/82 lg:shadow-[20px_0_80px_rgba(0,0,0,0.35)] lg:backdrop-blur-xl lg:translate-x-0",
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        )}
+      >
+        <div className="flex h-16 items-center justify-between border-b border-white/10 px-5">
+          <Link href="/dashboard" onClick={close} className="group flex items-center gap-3">
+            <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-white text-black shadow-[0_0_28px_rgba(255,255,255,0.15)] transition-transform group-hover:scale-105">
+              <Plane className="h-4 w-4 -rotate-45" />
             </div>
-            <p className="text-[10px] font-medium tracking-wide text-white/40">
-              Aviation AI Suite
-            </p>
-          </div>
-        </Link>
-      </div>
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-sm font-bold tracking-[0.14em] text-white">
+                  aero<span className="text-lime-200">AI</span>
+                </span>
+                <span className="rounded-full bg-lime-300 px-1.5 py-0.5 text-[9px] font-bold text-black">
+                  PRO
+                </span>
+              </div>
+              <p className="text-[10px] font-medium tracking-wide text-white/40">
+                Aviation AI Suite
+              </p>
+            </div>
+          </Link>
 
-      <nav className="flex-1 space-y-6 overflow-y-auto px-3 py-4">
-        {navGroups.map((group) => (
-          <div key={group.group} className="space-y-0.5">
-            <p className="px-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-white/30">
-              {group.group}
-            </p>
-            {group.items.map((item) => {
-              const active =
-                pathname === item.href ||
-                (item.href !== "/dashboard" && pathname.startsWith(item.href));
-              const Icon = item.icon;
+          {/* Close button on mobile */}
+          <button
+            onClick={close}
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-white/60 transition-colors hover:bg-white/10 hover:text-white lg:hidden"
+            aria-label="Close menu"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
 
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
+        <nav className="flex-1 space-y-6 overflow-y-auto px-3 py-4">
+          {navGroups.map((group) => (
+            <div key={group.group} className="space-y-0.5">
+              <p className="px-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-white/30">
+                {group.group}
+              </p>
+              {group.items.map((item) => {
+                const active =
+                  pathname === item.href ||
+                  (item.href !== "/dashboard" && pathname.startsWith(item.href));
+                const Icon = item.icon;
+
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={close}
                   className={cn(
                     "group flex items-center justify-between rounded-lg px-3 py-2 text-xs font-medium transition-all duration-150",
                     active
@@ -160,5 +189,6 @@ export function Sidebar() {
         </div>
       </div>
     </aside>
+  </>
   );
 }

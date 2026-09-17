@@ -118,7 +118,7 @@ export default function ReportsPage() {
               </select>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-brand-muted mb-1 font-medium">
                   Regulatory Standard
@@ -146,11 +146,11 @@ export default function ReportsPage() {
               </div>
             </div>
 
-            <div className="pt-2 flex items-center gap-2">
-              <Button onClick={handleExportPDF} disabled={isGenerating} size="sm">
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <Button onClick={handleExportPDF} disabled={isGenerating} size="sm" className="w-full sm:w-auto">
                 Download PDF
               </Button>
-              <Button onClick={handleExportDOCX} disabled={isGenerating} variant="outline" size="sm">
+              <Button onClick={handleExportDOCX} disabled={isGenerating} variant="outline" size="sm" className="w-full sm:w-auto">
                 Export DOCX
               </Button>
             </div>

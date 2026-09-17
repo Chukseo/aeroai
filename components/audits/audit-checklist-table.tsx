@@ -80,7 +80,7 @@ export function AuditChecklistTable() {
   return (
     <div className="space-y-6">
       <Card>
-        <CardContent className="p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <CardContent className="p-4 sm:p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2 text-xs text-brand-muted">
               <span>FAA Surveillance Framework</span>
@@ -95,7 +95,7 @@ export function AuditChecklistTable() {
             </p>
           </div>
 
-          <div className="rounded-md border border-brand-border bg-brand-surface px-5 py-3 text-center">
+          <div className="w-full md:w-auto rounded-md border border-brand-border bg-brand-surface px-5 py-3 text-center shrink-0">
             <span className="text-[10px] text-brand-muted uppercase tracking-wider block">Readiness</span>
             <span className="text-2xl font-bold text-brand-green">{readinessScore}%</span>
             <span className="text-[10px] text-brand-muted block mt-0.5">{compliantCount} of {applicableCount} verified</span>
@@ -104,56 +104,58 @@ export function AuditChecklistTable() {
       </Card>
 
       <div className="rounded-lg border border-brand-border bg-brand-card overflow-hidden">
-        <table className="w-full text-left text-xs">
-          <thead className="bg-brand-surface text-[11px] text-brand-muted border-b border-brand-border">
-            <tr>
-              <th className="py-3 px-4 font-medium">Item</th>
-              <th className="py-3 px-4 font-medium">Requirement</th>
-              <th className="py-3 px-4 font-medium">Regulation</th>
-              <th className="py-3 px-4 font-medium">Manual Ref</th>
-              <th className="py-3 px-4 font-medium">Status</th>
-              <th className="py-3 px-4 font-medium">Inspector Notes</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-brand-border text-brand-text">
-            {items.map((item) => (
-              <tr key={item.id} className="hover:bg-brand-hover/40 transition-colors">
-                <td className="py-3 px-4 font-mono font-medium text-brand-amber text-[11px]">
-                  {item.code}
-                </td>
-                <td className="py-3 px-4 font-medium text-brand-heading max-w-sm">
-                  {item.question}
-                </td>
-                <td className="py-3 px-4 font-mono text-[11px] text-brand-muted">
-                  {item.regulation_ref}
-                </td>
-                <td className="py-3 px-4 font-mono text-[11px] text-brand-gold">
-                  {item.document_ref || "—"}
-                </td>
-                <td className="py-3 px-4">
-                  <select
-                    value={item.status}
-                    onChange={(e) =>
-                      handleStatusChange(
-                        item.id,
-                        e.target.value as AuditChecklistItem["status"]
-                      )
-                    }
-                    className="h-7 rounded border border-brand-border bg-brand-surface px-2 text-xs text-brand-text focus:outline-none"
-                  >
-                    <option value="compliant">Compliant</option>
-                    <option value="non_compliant">Non-Compliant</option>
-                    <option value="needs_review">Needs Review</option>
-                    <option value="not_applicable">N/A</option>
-                  </select>
-                </td>
-                <td className="py-3 px-4 text-brand-muted text-[11px] max-w-xs">
-                  {item.notes}
-                </td>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs min-w-[700px]">
+            <thead className="bg-brand-surface text-[11px] text-brand-muted border-b border-brand-border">
+              <tr>
+                <th className="py-3 px-4 font-medium">Item</th>
+                <th className="py-3 px-4 font-medium">Requirement</th>
+                <th className="py-3 px-4 font-medium">Regulation</th>
+                <th className="py-3 px-4 font-medium">Manual Ref</th>
+                <th className="py-3 px-4 font-medium">Status</th>
+                <th className="py-3 px-4 font-medium">Inspector Notes</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-brand-border text-brand-text">
+              {items.map((item) => (
+                <tr key={item.id} className="hover:bg-brand-hover/40 transition-colors">
+                  <td className="py-3 px-4 font-mono font-medium text-brand-amber text-[11px]">
+                    {item.code}
+                  </td>
+                  <td className="py-3 px-4 font-medium text-brand-heading max-w-sm">
+                    {item.question}
+                  </td>
+                  <td className="py-3 px-4 font-mono text-[11px] text-brand-muted">
+                    {item.regulation_ref}
+                  </td>
+                  <td className="py-3 px-4 font-mono text-[11px] text-brand-gold">
+                    {item.document_ref || "—"}
+                  </td>
+                  <td className="py-3 px-4">
+                    <select
+                      value={item.status}
+                      onChange={(e) =>
+                        handleStatusChange(
+                          item.id,
+                          e.target.value as AuditChecklistItem["status"]
+                        )
+                      }
+                      className="h-7 rounded border border-brand-border bg-brand-surface px-2 text-xs text-brand-text focus:outline-none"
+                    >
+                      <option value="compliant">Compliant</option>
+                      <option value="non_compliant">Non-Compliant</option>
+                      <option value="needs_review">Needs Review</option>
+                      <option value="not_applicable">N/A</option>
+                    </select>
+                  </td>
+                  <td className="py-3 px-4 text-brand-muted text-[11px] max-w-xs">
+                    {item.notes}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

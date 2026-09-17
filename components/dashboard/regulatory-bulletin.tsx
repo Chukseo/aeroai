@@ -17,13 +17,13 @@ const authorityColor: Record<string, string> = {
 export function RegulatoryBulletin() {
   return (
     <Card>
-      <CardContent className="p-5 space-y-3">
+      <CardContent className="p-4 sm:p-5 space-y-3">
         <h3 className="text-sm font-semibold text-brand-heading">Regulatory Updates</h3>
 
         {BULLETINS.map((b, i) => (
-          <div key={i} className="flex items-start justify-between gap-3 rounded-md bg-brand-surface p-3">
+          <div key={i} className="flex items-start justify-between gap-2.5 sm:gap-3 rounded-md bg-brand-surface p-2.5 sm:p-3">
             <div className="space-y-0.5 min-w-0">
-              <div className="flex items-center gap-2 text-xs">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs">
                 <span className={`font-semibold ${authorityColor[b.authority] || "text-brand-text"}`}>{b.authority}</span>
                 <span className="font-mono font-medium text-brand-heading">{b.code}</span>
                 <span className="text-brand-muted">· {b.date}</span>

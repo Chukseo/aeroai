@@ -33,12 +33,12 @@ export default function RegulationsPage() {
           </p>
         </div>
 
-        <div className="flex items-center rounded-md border border-brand-border bg-brand-surface p-1 text-xs">
+        <div className="flex items-center rounded-md border border-brand-border bg-brand-surface p-1 text-xs w-full sm:w-auto">
           {["ALL", "FAA", "EASA", "ICAO"].map((auth) => (
             <button
               key={auth}
               onClick={() => setSelectedAuthority(auth)}
-              className={`rounded px-3 py-1 font-medium transition-colors ${
+              className={`flex-1 sm:flex-initial rounded px-3 py-1 font-medium transition-colors text-center ${
                 selectedAuthority === auth
                   ? "bg-brand-card text-brand-gold font-semibold"
                   : "text-brand-muted hover:text-brand-text"
@@ -94,7 +94,7 @@ export default function RegulationsPage() {
                   <span className="text-[10px] text-brand-muted font-medium uppercase tracking-wider block pt-2">
                     Official Statutory Text
                   </span>
-                  <div className="rounded bg-brand-card p-3 border border-brand-border font-mono text-brand-text text-[11px] leading-relaxed whitespace-pre-wrap">
+                  <div className="rounded bg-brand-card p-3 border border-brand-border font-mono text-brand-text text-[11px] leading-relaxed whitespace-pre-wrap break-words overflow-x-auto">
                     {reg.content}
                   </div>
                 </div>

@@ -88,17 +88,17 @@ export function ComparisonMatrix({ review }: ComparisonMatrixProps) {
               </p>
             </div>
 
-            <div className="flex items-center gap-4 shrink-0">
-              <div className="rounded-md border border-brand-border bg-brand-surface px-4 py-2.5 text-center">
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 shrink-0 w-full sm:w-auto">
+              <div className="flex-1 sm:flex-initial rounded-md border border-brand-border bg-brand-surface px-4 py-2.5 text-center">
                 <p className="text-[10px] text-brand-muted uppercase tracking-wider">Score</p>
                 <p className="text-xl font-bold text-brand-gold">{review.compliance_score.toFixed(1)}%</p>
               </div>
 
-              <div className="flex flex-col gap-1.5">
-                <Button onClick={handleDownloadPDF} disabled={isExportingPDF} size="sm">
+              <div className="flex flex-1 sm:flex-initial flex-row sm:flex-col gap-2 sm:gap-1.5">
+                <Button onClick={handleDownloadPDF} disabled={isExportingPDF} size="sm" className="flex-1 sm:flex-none">
                   Download PDF
                 </Button>
-                <Button onClick={handleDownloadDOCX} disabled={isExportingDOCX} variant="outline" size="sm">
+                <Button onClick={handleDownloadDOCX} disabled={isExportingDOCX} variant="outline" size="sm" className="flex-1 sm:flex-none">
                   Export DOCX
                 </Button>
               </div>
@@ -108,7 +108,7 @@ export function ComparisonMatrix({ review }: ComparisonMatrixProps) {
       </Card>
 
       {/* Filter tabs */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-xs">
         {[
           { key: "compliant", label: "Compliant", count: compliantCount },
           { key: "potential_risk", label: "Potential Risks", count: riskCount },
@@ -118,14 +118,14 @@ export function ComparisonMatrix({ review }: ComparisonMatrixProps) {
           <button
             key={tab.key}
             onClick={() => setFilterType(filterType === tab.key ? "ALL" : tab.key)}
-            className={`flex items-center justify-between rounded-md border p-3 transition-colors ${
+            className={`flex items-center justify-between rounded-md border p-2.5 sm:p-3 transition-colors ${
               filterType === tab.key
                 ? "border-brand-amber/40 bg-brand-amber/10 text-brand-gold font-medium"
                 : "border-brand-border bg-brand-surface text-brand-muted hover:text-brand-text"
             }`}
           >
-            <span>{tab.label}</span>
-            <span className="font-mono font-bold text-xs">{tab.count}</span>
+            <span className="truncate pr-1">{tab.label}</span>
+            <span className="font-mono font-bold text-xs shrink-0">{tab.count}</span>
           </button>
         ))}
       </div>
